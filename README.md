@@ -45,4 +45,5 @@ https://<your-site>.github.io/?fancy=neon\&links=Board|[https://tasks.com](https
 * 🧼 Pure HTML + JS
 * 🧩 GitHub Pages compatible
 * 🪶 No framework dependencies
+* ⏰ Live local-time clock under the QSW display
 
