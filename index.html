@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QSW Viewer</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #222;
     --fg: #fff;
-    --font: 'Montserrat', sans-serif;
+    --font: 'Lato', sans-serif;
   }
   body {
     margin: 0;
@@ -43,10 +43,13 @@
   #links {
     margin-top: auto;
     padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   #links a {
     color: var(--fg);
-    margin: 0 0.5rem;
     text-decoration: underline;
     transition: transform 0.3s;
   }
@@ -106,7 +109,7 @@
     clockDiv.textContent = new Date().toLocaleTimeString();
   }
   updateClock();
-  setInterval(updateClock, 1000);
+  setInterval(updateClock, 60000);
 
   const linksParam = params.get('links');
   const linksDiv = document.getElementById('links');
