@@ -1,7 +1,7 @@
 
 # QSW Viewer
 
-📅 A minimalist, full-screen viewer of the current Quarter, Sprint, and Week. Designed for dashboards, Agile boards, or personal use.
+📅 A minimalist, full-screen viewer of the current Quarter, Sprint, and Week. Designed for dashboards, Agile boards, or personal use. Sprints are calculated as six-week blocks within each quarter.
 
 ## 🔗 Live Example
 
