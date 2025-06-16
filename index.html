@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QSW Viewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #222;
     --fg: #fff;
-    font-family: sans-serif;
+    --font: 'Montserrat', sans-serif;
   }
   body {
     margin: 0;
@@ -19,10 +20,15 @@
     min-height: 100vh;
     background: var(--bg);
     color: var(--fg);
+    font-family: var(--font);
   }
   #value {
     font-size: 10vw;
     text-align: center;
+    letter-spacing: 0.05em;
+    animation: pop 0.6s ease-out forwards;
+    opacity: 0;
+    transition: color 0.5s ease;
   }
   #links {
     margin-top: auto;
@@ -35,6 +41,11 @@
   }
   @media(max-width:600px){
     #value { font-size: 20vw; }
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
   }
 </style>
 </head>
