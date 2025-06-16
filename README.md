@@ -21,9 +21,13 @@ https://<your-site>.github.io/?fancy=sunset
 
 https://<your-site>.github.io/?bg=black\&fg=white
 
+### Image/GIF background
+
+https://<your-site>.github.io/?img=https://example.com/wave.gif
+
 ### Add links
 
-https://<your-site>.github.io/?links=Docs|[https://example.com,Home|https://site.com](https://example.com,Home|https://site.com)
+https://<your-site>.github.io/?links=Firepoker|https%3A%2F%2Ffirepoker.app%2F%23%2Fgames%2Fnew
 
 ### Custom sprint length
 
@@ -31,7 +35,7 @@ https://<your-site>.github.io/?weeks=4
 
 ### Fancy + Links
 
-https://<your-site>.github.io/?fancy=neon\&links=Board|[https://tasks.com](https://tasks.com)
+https://<your-site>.github.io/?fancy=neon\&links=Board|https%3A%2F%2Ftasks.com
 
 ## 🧪 Available themes
 

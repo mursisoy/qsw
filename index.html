@@ -89,6 +89,13 @@
   }
   if(params.get('bg')) document.documentElement.style.setProperty('--bg', params.get('bg'));
   if(params.get('fg')) document.documentElement.style.setProperty('--fg', params.get('fg'));
+  const img = params.get('img');
+  if(img){
+    document.body.style.backgroundImage = `url(${img})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundRepeat = 'no-repeat';
+  }
 
   function calcQSW(d){
     const defaultWeeks = 6; // 1.5 months
@@ -106,7 +113,7 @@
 
   const clockDiv = document.getElementById('clock');
   function updateClock(){
-    clockDiv.textContent = new Date().toLocaleTimeString();
+    clockDiv.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
   }
   updateClock();
   setInterval(updateClock, 60000);
