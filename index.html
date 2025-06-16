@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QSW Viewer</title>
+<style>
+  :root {
+    --bg: #222;
+    --fg: #fff;
+    font-family: sans-serif;
+  }
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  #value {
+    font-size: 10vw;
+    text-align: center;
+  }
+  #links {
+    margin-top: auto;
+    padding: 1rem;
+  }
+  #links a {
+    color: var(--fg);
+    margin: 0 0.5rem;
+    text-decoration: none;
+  }
+  @media(max-width:600px){
+    #value { font-size: 20vw; }
+  }
+</style>
+</head>
+<body>
+<div id="value"></div>
+<div id="links"></div>
+<script>
+(function(){
+  const themes = {
+    sunset: {bg:"#ff5e62",fg:"#fff"},
+    neon:   {bg:"#000",fg:"#39ff14"},
+    ocean:  {bg:"#2e8bce",fg:"#e0ffff"},
+    calm:   {bg:"#f0f0f0",fg:"#333"}
+  };
+
+  const params = new URLSearchParams(location.search);
+  const fancy = params.get('fancy');
+  if(fancy && themes[fancy]){
+    document.documentElement.style.setProperty('--bg', themes[fancy].bg);
+    document.documentElement.style.setProperty('--fg', themes[fancy].fg);
+  }
+  if(params.get('bg')) document.documentElement.style.setProperty('--bg', params.get('bg'));
+  if(params.get('fg')) document.documentElement.style.setProperty('--fg', params.get('fg'));
+
+  function calcQSW(d){
+    const q = Math.floor(d.getMonth()/3)+1;
+    const start = new Date(d.getFullYear(), (q-1)*3, 1);
+    const weekWithinQuarter = Math.floor((d - start) / (1000*60*60*24*7)) + 1;
+    const sprint = Math.ceil(weekWithinQuarter/2);
+    const week = ((weekWithinQuarter - 1) % 2) + 1;
+    return `Q${q} S${sprint} W${week}`;
+  }
+
+  document.getElementById('value').textContent = calcQSW(new Date());
+
+  const linksParam = params.get('links');
+  const linksDiv = document.getElementById('links');
+  if(linksParam){
+    linksParam.split(',').forEach(l=>{
+      const [title,url] = l.split('|');
+      if(title && url){
+        const a = document.createElement('a');
+        a.href = url;
+        a.textContent = title;
+        a.target = '_blank';
+        linksDiv.appendChild(a);
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
