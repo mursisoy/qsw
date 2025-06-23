@@ -98,15 +98,40 @@
   }
 
   function calcQSW(d){
+    const qParam = parseInt(params.get('q'), 10);
+    const sParam = parseInt(params.get('s'), 10);
+    const wParam = parseInt(params.get('w'), 10);
+
+    if(!isNaN(qParam) || !isNaN(sParam) || !isNaN(wParam)){
+      const q = !isNaN(qParam) ? qParam : 1;
+      const sprint = !isNaN(sParam) ? sParam : 1;
+      const week = !isNaN(wParam) ? wParam : 1;
+      return `Q${q} S${sprint} W${week}`;
+    }
+
     const defaultWeeks = 6; // 1.5 months
     const paramWeeks = parseInt(params.get('weeks'), 10);
     const WEEKS_PER_SPRINT = paramWeeks > 0 ? paramWeeks : defaultWeeks;
-    const q = Math.floor(d.getMonth()/3)+1;
-    const start = new Date(d.getFullYear(), (q-1)*3, 1);
-    const weekWithinQuarter = Math.floor((d - start) / (1000*60*60*24*7)) + 1;
-    const sprint = Math.ceil(weekWithinQuarter / WEEKS_PER_SPRINT);
-    const week = ((weekWithinQuarter - 1) % WEEKS_PER_SPRINT) + 1;
-    return `Q${q} S${sprint} W${week}`;
+
+    const qCalculated = Math.floor(d.getMonth()/3)+1;
+
+    const msWeek = 1000*60*60*24*7;
+    function startOfWeek(date){
+      const monday = new Date(date);
+      monday.setDate(date.getDate() - ((date.getDay()+6)%7));
+      monday.setHours(0,0,0,0);
+      return monday;
+    }
+
+    const quarterStart = new Date(d.getFullYear(), (qCalculated-1)*3, 1);
+    const quarterStartMonday = startOfWeek(quarterStart);
+    const currentMonday = startOfWeek(d);
+    const weekWithinQuarter = Math.floor((currentMonday - quarterStartMonday) / msWeek) + 1;
+
+    const sprintCalculated = Math.ceil(weekWithinQuarter / WEEKS_PER_SPRINT);
+    const weekCalculated = ((weekWithinQuarter - 1) % WEEKS_PER_SPRINT) + 1;
+
+    return `Q${qCalculated} S${sprintCalculated} W${weekCalculated}`;
   }
 
   document.getElementById('value').textContent = calcQSW(new Date());
