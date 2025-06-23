@@ -33,6 +33,13 @@ https://<your-site>.github.io/?links=Firepoker|https%3A%2F%2Ffirepoker.app%2F%23
 
 https://<your-site>.github.io/?weeks=4
 
+### QSW override
+
+https://<your-site>.github.io/?q=3&s=1&w=1
+
+When any of the `q`, `s`, or `w` parameters is present, the displayed Quarter,
+Sprint, and Week won't be calculated from the current date.
+
 ### Fancy + Links
 
 https://<your-site>.github.io/?fancy=neon\&links=Board|https%3A%2F%2Ftasks.com
