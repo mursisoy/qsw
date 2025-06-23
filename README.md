@@ -1,7 +1,7 @@
 
 # QSW Viewer
 
-📅 A minimalist, full-screen viewer of the current Quarter, Sprint, and Week. Designed for dashboards, Agile boards, or personal use. Sprints are calculated in six-week blocks by default (change with `?weeks=NUMBER`). Calculations assume weeks begin on Monday.
+📅 A minimalist, full-screen viewer of the current Quarter, Sprint, and Week. Designed for dashboards, Agile boards, or personal use. Sprints are calculated in six-week blocks by default, with weeks starting on Monday (change with `?weeks=NUMBER`).
 
 ## 🔗 Live Example
 
